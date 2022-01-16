@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { CounterModule } from './counter/counter.module';
 
@@ -9,7 +10,8 @@ describe('AppComponent', () => {
         AppComponent
       ],
       imports: [
-        CounterModule
+        CounterModule,
+        StoreModule.forRoot({})
       ],
     }).compileComponents();
   });
