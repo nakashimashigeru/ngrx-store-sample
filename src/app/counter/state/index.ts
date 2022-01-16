@@ -22,3 +22,7 @@ export const reducers: ActionReducerMap<State> = {
 
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
+
+export const getCounterFeatureState = createFeatureSelector<State>('counter');
+export const getCounter = createSelector(getCounterFeatureState, s => s.counter);
+export const getCount = createSelector(getCounter, fromCounter.getCount);
