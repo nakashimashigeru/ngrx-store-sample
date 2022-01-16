@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CounterComponent } from './counter.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromCounter from './state';
-
-
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -12,7 +11,8 @@ import * as fromCounter from './state';
   ],
   imports: [
     CommonModule,
-    StoreModule.forFeature(fromCounter.counterFeatureKey, fromCounter.reducers, { metaReducers: fromCounter.metaReducers })
+    StoreModule.forFeature(fromCounter.counterFeatureKey, fromCounter.reducers, { metaReducers: fromCounter.metaReducers }),
+    MatButtonModule
   ],
   exports: [
     CounterComponent
