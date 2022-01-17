@@ -1,3 +1,5 @@
-<button mat-stroked-button color="primary" (click)="increment()">+</button>
-<button mat-stroked-button color="primary" (click)="decrement()">-</button>
-<div>Count: {{count$ | async }}</div>
+<div class="flex">
+  <button mat-stroked-button color="primary" (click)="increment()">+</button>
+  <button mat-stroked-button color="primary" (click)="decrement()">-</button>
+  <div class="test">Count : {{ count$ | async }}</div>
+</div>

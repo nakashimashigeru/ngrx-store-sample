@@ -1,0 +1,26 @@
+@import "../../../projects/shared-design/src/lib/scss/design.scss";
+
+@include host-initialized();
+
+.flex {
+  @include flex-row($justify: center, $align: center);
+  @include border-color(secondary, $px: 2px, $suffix: bottom);
+  @include get-spacer(
+    map-get($spacers, padding),
+    map-get($size, sb),
+    map-get($size, md)
+  );
+}
+
+.test {
+  @include font-color(secondary);
+  @include background-color(brand);
+  @include background-color-focus(brand);
+  @include elevation(5);
+  @include font(text);
+  @include get-spacer(
+    map-get($spacers, padding),
+    map-get($size, sb),
+    map-get($size, md)
+  );
+}
