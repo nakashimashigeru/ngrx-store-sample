@@ -3,6 +3,7 @@
 @include host-initialized();
 
 .flex {
+  @include z-index(header);
   @include flex-row($justify: center, $align: center);
   @include border-color(secondary, $px: 2px, $suffix: bottom);
   @include get-spacer(
