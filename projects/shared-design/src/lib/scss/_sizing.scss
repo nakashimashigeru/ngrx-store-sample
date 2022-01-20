@@ -1,0 +1,27 @@
+/**
+* @example
+*  px2rem(64);
+**/
+@function px2rem($px: 16) {
+  $px-2-rem: (
+    4: 0.25rem,
+    8: 0.5rem,
+    16: 1rem,
+    24: 1.5rem,
+    32: 2rem,
+    40: 2.5rem,
+    48: 3rem,
+    64: 4rem,
+    72: 4.5rem,
+    80: 5rem,
+    96: 6rem,
+    160: 10rem,
+  );
+
+  $result-rem: map-get($px-2-rem, $px);
+  @if ($result-rem == null) {
+    @error "px2rem()のパラメーターが正しくありません。";
+  }
+
+  @return $result-rem;
+}

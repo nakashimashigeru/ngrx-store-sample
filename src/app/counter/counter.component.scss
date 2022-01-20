@@ -17,11 +17,12 @@
   @include font-color(secondary);
   @include background-color(brand);
   @include background-color-focus(brand);
-  @include elevation(5);
+  @include kaleid-elevation(6);
   @include font(text);
   @include get-spacer(
     map-get($spacers, padding),
     map-get($size, sb),
     map-get($size, md)
   );
+  font-size: px2rem(16);
 }
