@@ -15,3 +15,27 @@ npm install @ngrx/component-store --save
 ```sh
 npm install -D pm2
 ```
+
+## pm2 (mock start)
+
+```sh
+npm run mock.start
+```
+
+## pm2 (mock reload)
+
+```sh
+npm run mock.reload
+```
+
+## pm2 (mock stop)
+
+```sh
+npm run mock.stop
+```
+
+## pm2 (mock kill)
+
+```sh
+npm run mock.kill
+```
