@@ -9,3 +9,9 @@ ng generate library shared-design
 ```sh
 npm install @ngrx/component-store --save
 ```
+
+## pm2 (Installing with npm)
+
+```sh
+npm install -D pm2
+```
