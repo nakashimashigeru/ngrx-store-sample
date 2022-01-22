@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import * as CounterReducer from './state/counter.reducer';
 import * as CounterActions from './state/counter.actions';
 import { getCount } from './state';
+import { CounterStore } from './counter.store';
 
 @Component({
   selector: 'app-counter',
@@ -13,19 +14,25 @@ import { getCount } from './state';
 export class CounterComponent implements OnInit {
   count$: Observable<number>;
 
-  constructor(private store: Store<CounterReducer.State>) {
-    this.count$ = store.select(getCount);
+  constructor(
+    private store: Store<CounterReducer.State>,
+    private counterStore: CounterStore
+    ) {
+    // this.count$ = store.select(getCount);
+    this.count$ = counterStore.count$;
   }
 
   ngOnInit(): void {
   }
 
   increment() {
-    this.store.dispatch(new CounterActions.CountIncrement());
+    // this.store.dispatch(new CounterActions.CountIncrement());
+    this.counterStore.increment();
   }
 
   decrement() {
-    this.store.dispatch(new CounterActions.CountDecrement());
+    // this.store.dispatch(new CounterActions.CountDecrement());
+    this.counterStore.decrement();
   }
 
 }

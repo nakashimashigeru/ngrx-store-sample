@@ -4,6 +4,7 @@ import { CounterComponent } from './counter.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromCounter from './state';
 import { MatButtonModule } from '@angular/material/button';
+import { CounterStore } from './counter.store';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   exports: [
     CounterComponent
-  ]
+  ],
+  providers: [CounterStore]
 })
 export class CounterModule { }
