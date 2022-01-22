@@ -5,6 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromCounter from './state';
 import { MatButtonModule } from '@angular/material/button';
 import { CounterStore } from './counter.store';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { CounterStore } from './counter.store';
   imports: [
     CommonModule,
     StoreModule.forFeature(fromCounter.counterFeatureKey, fromCounter.reducers, { metaReducers: fromCounter.metaReducers }),
-    MatButtonModule
+    MatButtonModule,
+    FontAwesomeModule
   ],
   exports: [
     CounterComponent
