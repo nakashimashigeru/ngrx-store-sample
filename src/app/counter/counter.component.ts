@@ -5,7 +5,7 @@ import * as CounterReducer from './state/counter.reducer';
 import * as CounterActions from './state/counter.actions';
 import { getCount } from './state';
 import { CounterStore } from './counter.store';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faSync } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-counter',
@@ -16,6 +16,8 @@ export class CounterComponent implements OnInit {
   count$: Observable<number>;
 
   faCoffee = faCoffee;
+
+  faSync = faSync;
 
   constructor(
     private store: Store<CounterReducer.State>,

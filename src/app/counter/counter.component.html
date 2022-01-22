@@ -2,5 +2,6 @@
   <button mat-stroked-button color="primary" (click)="increment()">+</button>
   <button mat-stroked-button color="primary" (click)="decrement()">-</button>
   <div class="test">Count : {{ count$ | async }}</div>
-  <fa-icon [icon]="faCoffee"></fa-icon>
+  <!-- <fa-icon [icon]="faCoffee"></fa-icon> -->
+  <fa-icon [icon]="faSync" [spin]="true"></fa-icon>
 </div>
