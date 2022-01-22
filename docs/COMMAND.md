@@ -53,3 +53,9 @@ npm install @fortawesome/angular-fontawesome
 ```sh
 npm install -D json-server
 ```
+
+## json-server (run server)
+
+```sh
+npm run json:server
+```

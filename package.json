@@ -10,7 +10,8 @@
     "mock.start": "./node_modules/.bin/pm2 start npm --name=\"mock\" -- run mock.start.dev",
     "mock.reload": "./node_modules/.bin/pm2 kill && ./node_modules/.bin/pm2 start npm --name=\"mock\" -- run mock.start.dev",
     "mock.stop": "./node_modules/.bin/pm2 stop mock",
-    "mock.kill": "./node_modules/.bin/pm2 kill"
+    "mock.kill": "./node_modules/.bin/pm2 kill",
+    "json:server": "json-server --watch db.json"
   },
   "private": true,
   "dependencies": {
