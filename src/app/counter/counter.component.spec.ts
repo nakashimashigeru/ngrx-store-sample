@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CounterComponent } from './counter.component';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { CounterStore } from './counter.store';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('CounterComponent', () => {
   let component: CounterComponent;
@@ -11,6 +12,7 @@ describe('CounterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+       imports: [ HttpClientModule ],
       declarations: [ CounterComponent ],
       providers: [
         provideMockStore(),

@@ -33,11 +33,13 @@ export class CounterComponent implements OnInit {
   increment() {
     // this.store.dispatch(new CounterActions.CountIncrement());
     this.counterStore.increment();
+    this.counterStore.put(this.count$);
   }
 
   decrement() {
     // this.store.dispatch(new CounterActions.CountDecrement());
     this.counterStore.decrement();
+    this.counterStore.put(this.count$);
   }
 
 }
