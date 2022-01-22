@@ -39,3 +39,11 @@ npm run mock.stop
 ```sh
 npm run mock.kill
 ```
+
+## @fortawesome/angular-fontawesome (Installing with npm)
+
+```sh
+npm install @fortawesome/fontawesome-svg-core
+npm install @fortawesome/free-solid-svg-icons
+npm install @fortawesome/angular-fontawesome
+```
