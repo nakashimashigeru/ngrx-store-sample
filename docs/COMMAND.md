@@ -47,3 +47,9 @@ npm install @fortawesome/fontawesome-svg-core
 npm install @fortawesome/free-solid-svg-icons
 npm install @fortawesome/angular-fontawesome
 ```
+
+## json-server (Installing with npm)
+
+```sh
+npm install -D json-server
+```
