@@ -59,3 +59,12 @@ npm install -D json-server
 ```sh
 npm run json:server
 ```
+
+## Application (users)
+
+```sh
+ng generate module users
+ng generate component users --module users
+ng generate service users/services/user
+ng generate component users/user-list
+```
