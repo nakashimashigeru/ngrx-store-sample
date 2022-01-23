@@ -68,3 +68,9 @@ ng generate component users --module users
 ng generate service users/services/user
 ng generate component users/user-list
 ```
+
+## @ngrx/effects (Installing with npm)
+
+```sh
+npm install -D @ngrx/effects
+```
