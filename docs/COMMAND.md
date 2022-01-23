@@ -74,3 +74,9 @@ ng generate component users/user-list
 ```sh
 npm install -D @ngrx/effects
 ```
+
+## @ngrx/entity (Installing with npm)
+
+```sh
+npm install -D @ngrx/entity
+```
