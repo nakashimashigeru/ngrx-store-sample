@@ -1,0 +1,5 @@
+@import "../../../projects/shared-design/src/lib/scss/design.scss";
+
+.test {
+  @include font-color-v2(warn);
+}

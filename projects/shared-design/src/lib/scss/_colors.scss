@@ -37,7 +37,7 @@ $blue: (
 // 黒
 $black: #2c2c2c;
 // 白
-$white: white;
+$white: #fff;
 // 標準フォント（黒）
 $on-black: mat-color($mat-blue-gray, 700);
 // 標準フォント（白）
@@ -86,8 +86,164 @@ $color-map: (
   ),
 );
 
+$color-map-v2: (
+  default: (
+    base: (
+      #111,
+      #333,
+      #555,
+      #777,
+      #999,
+    ),
+    on: (
+      $white,
+      $white,
+      $white,
+      $black,
+      $black,
+    ),
+    default: 3,
+  ),
+  white: (
+    base: (
+      #fff,
+      #c1c1c1,
+      #838383,
+      #616161,
+      #3c3c3c,
+      #313131,
+      #282828,
+    ),
+    on: (
+      $black,
+      $black,
+      $black,
+      $white,
+      $white,
+      $white,
+      $white,
+    ),
+    default: 1,
+  ),
+  black: (
+    base: (
+      #1a1a1a,
+      #484848,
+      #767676,
+      #a3a3a3,
+      #d1d1d1,
+      #e9e9e9,
+      #f3f3f3,
+    ),
+    on: (
+      $white,
+      $white,
+      $white,
+      $black,
+      $black,
+      $black,
+      $black,
+    ),
+    default: 1,
+  ),
+  grey-light: (
+    base: (
+      #eceff2,
+      #b6bec4,
+      #96a0a8,
+      #6c757d,
+      #454d56,
+      #2a3238,
+      #22272c,
+    ),
+    on: (
+      $black,
+      $black,
+      $black,
+      $white,
+      $white,
+      $white,
+      $white,
+    ),
+    default: 3,
+  ),
+  grey-dark: (
+    base: (
+      #23292e,
+      #3e454d,
+      #566069,
+      #838c94,
+      #b1b8c0,
+      #d9dee4,
+      #edf0f3,
+    ),
+    on: (
+      $white,
+      $white,
+      $white,
+      $black,
+      $black,
+      $black,
+      $black,
+    ),
+    default: 3,
+  ),
+  warn: (
+    base: (
+      #4c1c00,
+      #7f2e00,
+      #b74300,
+      #ff5e00,
+      #ffa570,
+      #ffebe0,
+    ),
+    on: (
+      $white,
+      $white,
+      $white,
+      $black,
+      $black,
+      $black,
+    ),
+    default: 4,
+  ),
+);
+
+@function p-color-level($color, $level) {
+  @if ($level == null) {
+    $level: map-get(map-get($color-map-v2, $color), default);
+  }
+  @return $level;
+}
+
+@function p-color-shift($color, $level) {
+  $on: nth(map-get(map-get($color-map-v2, $color), on), $level);
+  $shift: 0;
+  @if ($on == $white) {
+    $shift: 1;
+  } @else {
+    $shift: -1;
+  }
+  @return $shift;
+}
+
 @mixin font-color($color) {
   color: map-get(map-get($color-map, $color), color);
+}
+
+@mixin font-color-v2($color: default, $level: null) {
+  $level: p-color-level($color, $level);
+  $shift: p-color-shift($color, $level);
+  $shift-l1: $level + $shift;
+  $shift-l2: $level + $shift + $shift;
+
+  color: nth(map-get(map-get($color-map-v2, $color), base), $level);
+  &:hover {
+    color: nth(map-get(map-get($color-map-v2, $color), base), $shift-l1);
+  }
+  &.active {
+    color: nth(map-get(map-get($color-map-v2, $color), base), $shift-l2);
+  }
 }
 
 @mixin background-color($background, $alpha: 1) {
