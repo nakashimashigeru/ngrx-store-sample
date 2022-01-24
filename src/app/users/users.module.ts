@@ -4,8 +4,7 @@ import { UsersComponent } from './users.component';
 
 @NgModule({
   declarations: [UsersComponent],
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule],
+  exports: [UsersComponent]
 })
 export class UsersModule { }
