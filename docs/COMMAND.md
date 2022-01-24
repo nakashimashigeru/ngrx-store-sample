@@ -66,7 +66,6 @@ npm run json:server
 ng generate module users
 ng generate component users --module users
 ng generate service users/services/user
-ng generate component users/user-list
 ```
 
 ## @ngrx/effects (Installing with npm)
