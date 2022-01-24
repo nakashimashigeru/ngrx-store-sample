@@ -79,3 +79,12 @@ npm install -D @ngrx/effects
 ```sh
 npm install -D @ngrx/entity
 ```
+
+## @ngrx/schematics (action effect reducer selector)
+
+```sh
+ng generate @ngrx/schematics:action users/+state/User
+ng generate @ngrx/schematics:effect users/+state/User --module users/users.module.ts
+ng generate @ngrx/schematics:reducer users/+state/User
+ng generate @ngrx/schematics:selector users/+state/User
+```
