@@ -9,11 +9,12 @@ export interface State {
   loading: boolean;
   users: User[];
   error?: any;
+  user?: User;
 }
 
 export const initialState: State = {
   loading: false,
-  users: []
+  users: [],
 };
 
 export const reducer = createReducer(
@@ -26,5 +27,14 @@ export const reducer = createReducer(
   }),
   on(UserActions.loadUsersFailure, (state, { error }) => {
     return { ...state, loading: false, error };
+  }),
+  on(UserActions.createUser, state => {
+    return { ...state, loading: true };
+  }),
+  on(UserActions.createUserSuccess, (state, { user }) => {
+    return { ...state, loading: false, user: user, error: null };
+  }),
+  on(UserActions.createUserFailure, (state, { error }) => {
+    return { ...state, loading: false, error: error };
   })
 );

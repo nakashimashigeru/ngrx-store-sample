@@ -1,10 +1,13 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, map, pairwise, startWith } from 'rxjs/operators';
 import { UserFacade } from './+state/user.facade';
 import { User } from './models/user.model';
 import { UserService } from './services/user.service';
+
+import * as UserActions from './../users/+state/user.actions';
 
 @Component({
   selector: 'app-users',
@@ -31,7 +34,8 @@ export class UsersComponent implements OnInit, AfterViewInit {
   constructor(
     private userFacade: UserFacade,
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private store: Store
     ) {
     this.userFacade.loadUsers();
   }
@@ -72,10 +76,6 @@ export class UsersComponent implements OnInit, AfterViewInit {
       name: this.addForm.controls[this.addFormCtrl.NAME].value
     }
 
-    this.userService.createUsers(userInfo).subscribe(
-      (data) => {
-        console.log(data);
-      }
-    );
+    this.store.dispatch(UserActions.createUser({ user: userInfo }));
   }
 }

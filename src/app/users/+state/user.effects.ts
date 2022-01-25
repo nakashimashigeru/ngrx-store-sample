@@ -14,13 +14,29 @@ export class UserEffects {
     private userService: UserService
   ) {}
 
-  loadAll$ = createEffect(() =>
+  loadUsers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.loadUsers),
       switchMap(() =>
         this.userService.getUsers().pipe(
           map(
             result => UserActions.loadUsersSuccess({ users: result })
+          ),
+          catchError(
+            error => of(UserActions.loadUsersFailure({ error }))
+          )
+        )
+      )
+    )
+  );
+
+  createUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.createUser),
+      switchMap((result) =>
+        this.userService.createUser(result.user).pipe(
+          map(
+            (user: any) => UserActions.createUserSuccess({ user: user })
           ),
           catchError(
             error => of(UserActions.loadUsersFailure({ error }))

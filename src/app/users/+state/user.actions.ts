@@ -14,3 +14,18 @@ export const loadUsersFailure = createAction(
   '[User/API] Load Users Failure',
   props<{ error: any }>()
 );
+
+export const createUser = createAction(
+  '[User/API] Create User',
+  props<{ user: User }>()
+);
+
+export const createUserSuccess = createAction(
+  '[User/API] Create User Success',
+  props<{ user: User }>()
+);
+
+export const createUserFailure = createAction(
+  '[User/API] Create User Failure',
+  props<{ error: any }>()
+);
