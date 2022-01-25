@@ -1,5 +1,32 @@
-<ul class="test">
-  <li *ngFor="let user of users$ | async">
+<ul>
+  <li *ngFor="let user of users$ | async" class="test">
     {{ user.id }} {{ user.name }}
   </li>
 </ul>
+
+<section class="add-form">
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-subtitle>addForm</mat-card-subtitle>
+      <div class="add-form-div">
+        <mat-form-field>
+          <input matInput [formControlName]="addFormCtrl.ID" placeholder="ID">
+          <mat-error *ngIf="addForm.controls[addFormCtrl.ID].errors?.['required']">
+            IDを入力してください
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [formControlName]="addFormCtrl.NAME" placeholder="NAME">
+          <mat-error *ngIf="addForm.controls[addFormCtrl.NAME].errors?.['required']">
+            NAMEを入力してください
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-card-actions>
+        <button mat-stroked-button type="submit" [disabled]="addForm.invalid">
+          送信
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</section>

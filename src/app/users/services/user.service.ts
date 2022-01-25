@@ -19,4 +19,9 @@ export class UserService {
   public getUsers(): Observable<User[]> {
     return this.http.get<User[]>('http://localhost:3000/users');
   }
+
+  public createUsers(userInfo: User): Observable<User> {
+    const body = JSON.stringify(userInfo);
+    return this.http.post<User>('http://localhost:3000/users', body, httpOptions);
+  }
 }

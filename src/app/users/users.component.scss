@@ -1,5 +1,21 @@
 @import "../../../projects/shared-design/src/lib/scss/design.scss";
 
+:host {
+  display: block;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
 .test {
-  @include font-color-v2(warn);
+  &:first-child {
+    @include font-color-v2(warn);
+  }
+}
+
+.add-form {
+  @include get-spacer(map-get($spacers, padding), map-get($size, md));
+  width: 500px;
+}
+
+.add-form-div {
+  @include flex-row($gap: 2rem);
 }
