@@ -24,4 +24,8 @@ export class UserService {
     const body = JSON.stringify(userInfo);
     return this.http.post<User>('http://localhost:3000/users', body, httpOptions);
   }
+
+  public deleteUser(id: number): Observable<User> {
+    return this.http.delete<User>(`http://localhost:3000/users/${id}`);
+  }
 }

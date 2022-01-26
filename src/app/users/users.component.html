@@ -1,6 +1,11 @@
-<ul>
-  <li *ngFor="let user of users$ | async" class="test">
-    {{ user.id }} {{ user.name }}
+<ul class="ul">
+  <li *ngFor="let user of users$ | async" class="li">
+    <div class="user">
+      {{ user.id }} {{ user.name }}
+    </div>
+    <div>
+      <button mat-stroked-button (click)="deleteUser(user.id)">削除</button>
+    </div>
   </li>
 </ul>
 

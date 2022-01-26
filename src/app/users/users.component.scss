@@ -5,9 +5,16 @@
   font-family: "Noto Sans JP", sans-serif;
 }
 
-.test {
-  &:first-child {
-    @include font-color-v2(warn);
+.ul {
+  width: 475px;
+
+  .li {
+    &:first-of-type {
+      .user {
+        @include font-color-v2(warn);
+      }
+    }
+    @include flex-row($justify: space-between, $align: center);
   }
 }
 

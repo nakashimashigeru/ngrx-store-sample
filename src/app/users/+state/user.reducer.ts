@@ -36,5 +36,14 @@ export const reducer = createReducer(
   }),
   on(UserActions.createUserFailure, (state, { error }) => {
     return { ...state, loading: false, error: error };
+  }),
+  on(UserActions.deleteUser, state => {
+    return { ...state, loading: true };
+  }),
+  on(UserActions.deleteUserSuccess, (state, { id }) => {
+    return { ...state, loading: false, users: state.users.filter(x => x.id !== id)};
+  }),
+  on(UserActions.deleteUserFailure, (state, { error }) => {
+    return { ...state, loading: false, error: error };
   })
 );

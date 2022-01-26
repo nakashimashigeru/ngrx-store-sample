@@ -20,7 +20,7 @@ export class UserEffects {
       switchMap(() =>
         this.userService.getUsers().pipe(
           map(
-            result => UserActions.loadUsersSuccess({ users: result })
+            users => UserActions.loadUsersSuccess({ users: users })
           ),
           catchError(
             error => of(UserActions.loadUsersFailure({ error }))
@@ -33,13 +33,29 @@ export class UserEffects {
   createUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.createUser),
-      switchMap((result) =>
-        this.userService.createUser(result.user).pipe(
+      switchMap((action) =>
+        this.userService.createUser(action.user).pipe(
           map(
             (user: any) => UserActions.createUserSuccess({ user: user })
           ),
           catchError(
-            error => of(UserActions.loadUsersFailure({ error }))
+            error => of(UserActions.createUserFailure({ error }))
+          )
+        )
+      )
+    )
+  );
+
+  deleteUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.deleteUser),
+      switchMap((action) =>
+        this.userService.deleteUser(action.id).pipe(
+          map(
+            (user: any) => UserActions.deleteUserSuccess({ id: action.id })
+          ),
+          catchError(
+            error => of(UserActions.deleteUserFailure({ error }))
           )
         )
       )

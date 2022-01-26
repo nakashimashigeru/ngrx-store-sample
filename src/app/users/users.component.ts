@@ -78,4 +78,8 @@ export class UsersComponent implements OnInit, AfterViewInit {
 
     this.store.dispatch(UserActions.createUser({ user: userInfo }));
   }
+
+  deleteUser(id: number) {
+    this.store.dispatch(UserActions.deleteUser({ id: id }));
+  }
 }
