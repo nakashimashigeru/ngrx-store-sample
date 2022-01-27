@@ -10,9 +10,9 @@
 </ul>
 
 <section class="add-form">
-  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="addForm" (ngSubmit)="createUser()">
     <mat-card>
-      <mat-card-subtitle>addForm</mat-card-subtitle>
+      <mat-card-subtitle class="add-form-subtitle">addForm</mat-card-subtitle>
       <div class="add-form-div">
         <mat-form-field>
           <input matInput [formControlName]="addFormCtrl.ID" placeholder="ID">
@@ -29,6 +29,33 @@
       </div>
       <mat-card-actions>
         <button mat-stroked-button type="submit" [disabled]="addForm.invalid">
+          送信
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</section>
+
+<section class="edit-form">
+  <form [formGroup]="editForm" (ngSubmit)="updateUser()">
+    <mat-card>
+      <mat-card-subtitle class="edit-form-subtitle">editForm</mat-card-subtitle>
+      <div class="edit-form-div">
+        <mat-form-field>
+          <input matInput [formControlName]="editFormCtrl.ID" placeholder="ID">
+          <mat-error *ngIf="editForm.controls[editFormCtrl.ID].errors?.['required']">
+            IDを入力してください
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [formControlName]="editFormCtrl.NAME" placeholder="NAME">
+          <mat-error *ngIf="editForm.controls[editFormCtrl.NAME].errors?.['required']">
+            NAMEを入力してください
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-card-actions>
+        <button mat-stroked-button type="submit" [disabled]="editForm.invalid">
           送信
         </button>
       </mat-card-actions>

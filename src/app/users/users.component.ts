@@ -23,12 +23,25 @@ export class UsersComponent implements OnInit, AfterViewInit {
     NAME: 'name'
   };
 
+  public readonly editFormCtrl = {
+    ID: 'id',
+    NAME: 'name'
+  };
+
   public readonly addForm: FormGroup = this.formBuilder.group({
     [this.addFormCtrl.ID]: [
       '',
       [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]
     ],
     [this.addFormCtrl.NAME]: ['', [Validators.required]]
+  });
+
+  public readonly editForm: FormGroup = this.formBuilder.group({
+    [this.editFormCtrl.ID]: [
+      '',
+      [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]
+    ],
+    [this.editFormCtrl.NAME]: ['', [Validators.required]]
   });
 
   constructor(
@@ -75,13 +88,16 @@ export class UsersComponent implements OnInit, AfterViewInit {
         });
   }
 
-  onSubmit() {
+  createUser() {
     const userInfo: User = {
       id: this.addForm.controls[this.addFormCtrl.ID].value,
       name: this.addForm.controls[this.addFormCtrl.NAME].value
     }
 
     this.store.dispatch(UserActions.createUser({ user: userInfo }));
+  }
+
+  updateUser() {
   }
 
   deleteUser(id: number) {

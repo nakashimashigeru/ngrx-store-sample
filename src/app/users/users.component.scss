@@ -18,11 +18,21 @@
   }
 }
 
-.add-form {
+.add-form,
+.edit-form {
   @include get-spacer(map-get($spacers, padding), map-get($size, md));
   width: 500px;
 }
 
-.add-form-div {
+.add-form-div,
+.edit-form-div {
   @include flex-row($gap: 2rem);
+}
+
+.add-form-subtitle {
+  @include font-color-v2(warn);
+}
+
+.edit-form-subtitle {
+  @include font-color-v2(grey-dark);
 }
