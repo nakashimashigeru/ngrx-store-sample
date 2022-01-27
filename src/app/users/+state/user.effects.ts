@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { UserService } from '../services/user.service';
 
 import * as UserActions from './user.actions';
@@ -60,6 +60,33 @@ export class UserEffects {
         )
       )
     )
+  );
+
+  updateUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.updateUser),
+      switchMap((action) =>
+        this.userService.updateUser(action.id, action.user).pipe(
+          map(
+            (user: any) => UserActions.updateUserSuccess({ user: user })
+          ),
+          catchError(
+            error => of(UserActions.updateUserFailure({ error }))
+          )
+        )
+      )
+    )
+  );
+
+  updateUserSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(UserActions.updateUserSuccess),
+        tap(action => {
+          console.log(action.type);
+        })
+      ),
+    { dispatch: false }
   );
 
   deleteUser$ = createEffect(() =>

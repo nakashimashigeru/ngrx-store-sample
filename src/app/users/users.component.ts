@@ -108,12 +108,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
       name: this.editForm.controls[this.editFormCtrl.NAME].value
     };
 
-    this.userService.updateUser(userInfo.id, userInfo).subscribe(
-      () => {
-        this.editForm.controls[this.editFormCtrl.ID].setValue('');
-        this.editForm.controls[this.editFormCtrl.NAME].setValue('');
-      }
-    );
+    this.store.dispatch(UserActions.updateUser({ id: userInfo.id, user: userInfo }));
   }
 
   deleteUser(id: number) {

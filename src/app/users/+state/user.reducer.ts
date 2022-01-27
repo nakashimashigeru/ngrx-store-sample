@@ -50,6 +50,15 @@ export const reducer = createReducer(
   on(UserActions.createUserFailure, (state, { error }) => {
     return { ...state, loading: false, error: error };
   }),
+  on(UserActions.updateUser, state => {
+    return { ...state, loading: true };
+  }),
+  on(UserActions.updateUserSuccess, (state, { user }) => {
+    return { ...state, loading: false, user: user, error: null };
+  }),
+  on(UserActions.updateUserFailure, (state, { error }) => {
+    return { ...state, loading: false, error: error };
+  }),
   on(UserActions.deleteUser, state => {
     return { ...state, loading: true };
   }),

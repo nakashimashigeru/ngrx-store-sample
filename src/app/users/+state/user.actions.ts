@@ -45,6 +45,21 @@ export const createUserFailure = createAction(
   props<{ error: any }>()
 );
 
+export const updateUser = createAction(
+  '[User/API] Update User',
+  props<{ id: number; user: User; }>()
+);
+
+export const updateUserSuccess = createAction(
+  '[User/API] Update User Success',
+  props<{ user: User }>()
+);
+
+export const updateUserFailure = createAction(
+  '[User/API] Update User Failure',
+  props<{ error: any }>()
+);
+
 export const deleteUser = createAction(
   '[User/API] Delete User',
   props<{ id: number }>()
