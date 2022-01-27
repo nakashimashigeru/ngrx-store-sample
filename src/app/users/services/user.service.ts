@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { User } from '../models/user.model';
 
 const httpOptions = {
@@ -14,7 +14,15 @@ const httpOptions = {
 })
 export class UserService {
 
+  private getUsersUnsubscribe$ = new Subject<void>();
+
   constructor(private http: HttpClient) { }
+
+  public getUsersCanceled() {
+    this.getUsersUnsubscribe$.next();
+    this.getUsersUnsubscribe$.complete();
+    this.getUsersUnsubscribe$ = new Subject<void>();
+  }
 
   public getUsers(): Observable<User[]> {
     return this.http.get<User[]>('http://localhost:3000/users');

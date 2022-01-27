@@ -14,6 +14,17 @@ export class UserEffects {
     private userService: UserService
   ) {}
 
+  initializeLoadUsers$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(UserActions.initializeLoadUsers),
+        tap(() => {
+          this.userService.getUsersCanceled();
+        })
+      ),
+    { dispatch: false }
+  );
+
   loadUsers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.loadUsers),

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -14,7 +14,7 @@ import * as UserActions from './../users/+state/user.actions';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit, AfterViewInit {
+export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
 
   users$: null | Observable<User[]> = null;
 
@@ -81,6 +81,10 @@ export class UsersComponent implements OnInit, AfterViewInit {
         .subscribe((value) => {
           console.log(value);
         });
+  }
+
+  ngOnDestroy(): void {
+    this.userFacade.initializeLoadUsers();
   }
 
   getUser(id: number) {

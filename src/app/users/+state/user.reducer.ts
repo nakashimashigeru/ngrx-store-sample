@@ -23,6 +23,9 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
+  on(UserActions.initializeLoadUsers, (state, { }) => {
+    return initialState;
+  }),
   on(UserActions.loadUsers, state => {
     return { ...state, loading: true };
   }),

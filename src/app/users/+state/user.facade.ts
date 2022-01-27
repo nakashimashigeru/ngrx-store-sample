@@ -14,6 +14,10 @@ export class UserFacade {
 
   constructor(private store: Store) {}
 
+  initializeLoadUsers() {
+    this.store.dispatch(UserActions.initializeLoadUsers());
+  }
+
   loadUsers() {
     this.store.dispatch(UserActions.loadUsers());
   }

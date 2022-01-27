@@ -1,6 +1,10 @@
 import { createAction, props } from '@ngrx/store';
 import { User } from '../models/user.model';
 
+export const initializeLoadUsers = createAction(
+  '[User/API] Initialize Load Users'
+);
+
 export const loadUsers = createAction(
   '[User/API] Load Users'
 );
