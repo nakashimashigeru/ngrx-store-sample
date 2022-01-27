@@ -30,6 +30,22 @@ export class UserEffects {
     )
   );
 
+  loadUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.loadUser),
+      switchMap((action) =>
+        this.userService.getUser(action.id).pipe(
+          map(
+            (user: any) => UserActions.loadUserSuccess({ user: user })
+          ),
+          catchError(
+            error => of(UserActions.loadUsersFailure({ error }))
+          )
+        )
+      )
+    )
+  );
+
   createUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.createUser),

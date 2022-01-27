@@ -10,10 +10,15 @@ import * as UserActions from './user.actions';
 export class UserFacade {
   loading$ = this.store.pipe(select(UserSelectors.getLoading));
   users$ = this.store.pipe(select(UserSelectors.getUsers));
+  user$ = this.store.pipe(select(UserSelectors.getUser));
 
   constructor(private store: Store) {}
 
   loadUsers() {
     this.store.dispatch(UserActions.loadUsers());
+  }
+
+  loadUser(id: number) {
+    this.store.dispatch(UserActions.loadUser({ id: id }));
   }
 }

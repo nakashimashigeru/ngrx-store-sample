@@ -38,10 +38,15 @@ export class UsersComponent implements OnInit, AfterViewInit {
     private store: Store
     ) {
     this.userFacade.loadUsers();
+    this.userFacade.loadUser(2);
   }
 
   ngOnInit(): void {
     this.users$ = this.userFacade.users$;
+
+    this.userFacade.user$.subscribe(
+      data => console.log(data)
+    );
   }
 
   ngAfterViewInit(): void {
