@@ -4,6 +4,7 @@
       {{ user.id }} {{ user.name }}
     </div>
     <div>
+      <button mat-stroked-button (click)="getUser(user.id)">編集</button>
       <button mat-stroked-button (click)="deleteUser(user.id)">削除</button>
     </div>
   </li>

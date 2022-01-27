@@ -51,15 +51,10 @@ export class UsersComponent implements OnInit, AfterViewInit {
     private store: Store
     ) {
     this.userFacade.loadUsers();
-    this.userFacade.loadUser(2);
   }
 
   ngOnInit(): void {
     this.users$ = this.userFacade.users$;
-
-    this.userFacade.user$.subscribe(
-      data => console.log(data)
-    );
   }
 
   ngAfterViewInit(): void {
@@ -88,16 +83,37 @@ export class UsersComponent implements OnInit, AfterViewInit {
         });
   }
 
+  getUser(id: number) {
+    this.userFacade.loadUser(id);
+    this.userFacade.user$.subscribe(
+      data => {
+        this.editForm.controls[this.editFormCtrl.ID].setValue(data.id);
+        this.editForm.controls[this.editFormCtrl.NAME].setValue(data.name);
+      }
+    );
+  }
+
   createUser() {
     const userInfo: User = {
       id: this.addForm.controls[this.addFormCtrl.ID].value,
       name: this.addForm.controls[this.addFormCtrl.NAME].value
-    }
+    };
 
     this.store.dispatch(UserActions.createUser({ user: userInfo }));
   }
 
   updateUser() {
+    const userInfo: User = {
+      id: this.editForm.controls[this.editFormCtrl.ID].value,
+      name: this.editForm.controls[this.editFormCtrl.NAME].value
+    };
+
+    this.userService.updateUser(userInfo.id, userInfo).subscribe(
+      () => {
+        this.editForm.controls[this.editFormCtrl.ID].setValue('');
+        this.editForm.controls[this.editFormCtrl.NAME].setValue('');
+      }
+    );
   }
 
   deleteUser(id: number) {

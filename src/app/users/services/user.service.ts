@@ -29,6 +29,11 @@ export class UserService {
     return this.http.post<User>('http://localhost:3000/users', body, httpOptions);
   }
 
+  public updateUser(id: number, userInfo: User): Observable<User> {
+    const body = JSON.stringify(userInfo);
+    return this.http.put<User>(`http://localhost:3000/users/${id}`, body, httpOptions);
+  }
+
   public deleteUser(id: number): Observable<User> {
     return this.http.delete<User>(`http://localhost:3000/users/${id}`);
   }

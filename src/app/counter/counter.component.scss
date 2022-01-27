@@ -1,5 +1,10 @@
 @import "../../../projects/shared-design/src/lib/scss/design.scss";
 
+:host {
+  display: block;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
 @include host-initialized();
 
 .flex {
