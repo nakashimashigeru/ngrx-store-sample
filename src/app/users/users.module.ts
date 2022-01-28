@@ -10,9 +10,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { AddUserComponent } from './components/add-user/add-user.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 @NgModule({
-  declarations: [UsersComponent],
+  declarations: [
+    UsersComponent,
+    AddUserComponent,
+    EditUserComponent
+  ],
   imports: [
     CommonModule,
     EffectsModule.forFeature([UserEffects]),
@@ -22,8 +29,13 @@ import { MatButtonModule } from '@angular/material/button';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    AppRoutingModule
   ],
-  exports: [UsersComponent]
+  exports: [
+    UsersComponent,
+    AddUserComponent,
+    EditUserComponent
+  ]
 })
 export class UsersModule { }

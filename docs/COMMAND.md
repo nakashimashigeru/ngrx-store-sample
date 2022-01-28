@@ -1,3 +1,19 @@
+## generate AppRoutingModule
+
+```sh
+ng generate module app-routing --flat --module=app
+```
+
+## Application (users)
+
+```sh
+ng generate module users
+ng generate component users --module users
+ng generate service users/services/user
+ng generate component users/components/add-user --module users
+ng generate component users/components/edit-user --module users
+```
+
 ## Library (shared-design)
 
 ```sh
@@ -58,14 +74,6 @@ npm install -D json-server
 
 ```sh
 npm run json:server
-```
-
-## Application (users)
-
-```sh
-ng generate module users
-ng generate component users --module users
-ng generate service users/services/user
 ```
 
 ## @ngrx/effects (Installing with npm)

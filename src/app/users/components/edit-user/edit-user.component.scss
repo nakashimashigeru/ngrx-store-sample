@@ -1,0 +1,19 @@
+@import "../../../../../projects/shared-design/src/lib/scss/design.scss";
+
+:host {
+  @include host-initialized();
+  display: block;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+.edit-form {
+  @include get-spacer(map-get($spacers, padding), map-get($size, md));
+}
+
+.edit-form-div {
+  @include flex-row($gap: 2rem);
+}
+
+.edit-form-subtitle {
+  @include font-color-v2(grey-dark);
+}

@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersModule } from './users/users.module';
 import { EffectsModule } from '@ngrx/effects';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserAnimationsModule,
     UsersModule,
     EffectsModule.forRoot([]),
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

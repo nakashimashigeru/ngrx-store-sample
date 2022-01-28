@@ -1,0 +1,35 @@
+<section class="edit-form">
+  <form [formGroup]="editForm" (ngSubmit)="updateUser()">
+    <mat-card>
+      <mat-card-subtitle class="edit-form-subtitle">editForm</mat-card-subtitle>
+      <div class="edit-form-div">
+        <mat-form-field>
+          <input matInput [formControlName]="editFormCtrl.ID" placeholder="ID">
+          <mat-error *ngIf="editForm.controls[editFormCtrl.ID].errors?.['required']">
+            IDを入力してください
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="edit-form-div">
+        <mat-form-field>
+          <input matInput [formControlName]="editFormCtrl.NAME" placeholder="NAME">
+          <mat-error *ngIf="editForm.controls[editFormCtrl.NAME].errors?.['required']">
+            NAMEを入力してください
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-card-actions>
+        <button mat-stroked-button type="submit" [disabled]="editForm.invalid">
+          送信
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</section>
+
+<ul>
+  <li>
+    ユーザ画面に遷移する場合は、
+    <a routerLink="/users">こちら</a>
+  </li>
+</ul>

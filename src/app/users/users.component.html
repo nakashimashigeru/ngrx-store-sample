@@ -1,65 +1,19 @@
-<ul class="ul">
-  <li *ngFor="let user of users$ | async" class="li">
-    <div class="user">
-      {{ user.id }} {{ user.name }}
-    </div>
-    <div>
-      <button mat-stroked-button (click)="getUser(user.id)">編集</button>
-      <button mat-stroked-button (click)="deleteUser(user.id)">削除</button>
-    </div>
-  </li>
-</ul>
-
-<section class="add-form">
-  <form [formGroup]="addForm" (ngSubmit)="createUser()">
-    <mat-card>
-      <mat-card-subtitle class="add-form-subtitle">addForm</mat-card-subtitle>
-      <div class="add-form-div">
-        <mat-form-field>
-          <input matInput [formControlName]="addFormCtrl.ID" placeholder="ID">
-          <mat-error *ngIf="addForm.controls[addFormCtrl.ID].errors?.['required']">
-            IDを入力してください
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput [formControlName]="addFormCtrl.NAME" placeholder="NAME">
-          <mat-error *ngIf="addForm.controls[addFormCtrl.NAME].errors?.['required']">
-            NAMEを入力してください
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <mat-card-actions>
-        <button mat-stroked-button type="submit" [disabled]="addForm.invalid">
-          送信
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </form>
-</section>
-
-<section class="edit-form">
-  <form [formGroup]="editForm" (ngSubmit)="updateUser()">
-    <mat-card>
-      <mat-card-subtitle class="edit-form-subtitle">editForm</mat-card-subtitle>
-      <div class="edit-form-div">
-        <mat-form-field>
-          <input matInput [formControlName]="editFormCtrl.ID" placeholder="ID">
-          <mat-error *ngIf="editForm.controls[editFormCtrl.ID].errors?.['required']">
-            IDを入力してください
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput [formControlName]="editFormCtrl.NAME" placeholder="NAME">
-          <mat-error *ngIf="editForm.controls[editFormCtrl.NAME].errors?.['required']">
-            NAMEを入力してください
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <mat-card-actions>
-        <button mat-stroked-button type="submit" [disabled]="editForm.invalid">
-          送信
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </form>
+<section class="user-list">
+  <mat-card>
+    <ul class="ul">
+      <li *ngFor="let user of users$ | async" class="li">
+        <div class="user">
+          {{ user.id }} {{ user.name }}
+        </div>
+        <div>
+          <button mat-stroked-button (click)="updateUser(user.id)">編集</button>
+          <button mat-stroked-button (click)="deleteUser(user.id)">削除</button>
+        </div>
+      </li>
+    </ul>
+  </mat-card>
+  <p>
+    ユーザを追加する場合は、
+    <a routerLink="/users/add">こちら</a>
+  </p>
 </section>

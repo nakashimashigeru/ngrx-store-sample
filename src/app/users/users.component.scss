@@ -1,38 +1,30 @@
 @import "../../../projects/shared-design/src/lib/scss/design.scss";
 
 :host {
+  @include host-initialized();
   display: block;
   font-family: "Noto Sans JP", sans-serif;
 }
 
+.user-list {
+  @include get-spacer(map-get($spacers, padding), map-get($size, md));
+}
+
 .ul {
-  width: 475px;
+  @include get-spacer(
+    map-get($spacers, padding),
+    map-get($size, sl),
+    map-get($size, sl)
+  );
+  list-style-type: none;
 
   .li {
+    @include flex-row($justify: space-between, $align: center);
+
     &:first-of-type {
       .user {
         @include font-color-v2(warn);
       }
     }
-    @include flex-row($justify: space-between, $align: center);
   }
-}
-
-.add-form,
-.edit-form {
-  @include get-spacer(map-get($spacers, padding), map-get($size, md));
-  width: 500px;
-}
-
-.add-form-div,
-.edit-form-div {
-  @include flex-row($gap: 2rem);
-}
-
-.add-form-subtitle {
-  @include font-color-v2(warn);
-}
-
-.edit-form-subtitle {
-  @include font-color-v2(grey-dark);
 }

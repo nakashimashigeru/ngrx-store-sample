@@ -1,32 +1,30 @@
-import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-import { metaReducers, reducers } from '../state';
+import { metaReducers, reducers } from 'src/app/state';
 
-import { UsersComponent } from './users.component';
+import { EditUserComponent } from './edit-user.component';
 
-describe('UsersComponent', () => {
-  let component: UsersComponent;
-  let fixture: ComponentFixture<UsersComponent>;
+describe('EditUserComponent', () => {
+  let component: EditUserComponent;
+  let fixture: ComponentFixture<EditUserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports:[
-        HttpClientModule,
         StoreModule.forRoot(reducers, { metaReducers }),
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forRoot([])
       ],
-      declarations: [UsersComponent]
+      declarations: [ EditUserComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UsersComponent);
+    fixture = TestBed.createComponent(EditUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
