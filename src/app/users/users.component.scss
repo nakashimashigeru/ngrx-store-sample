@@ -8,6 +8,20 @@
 
 .user-list {
   @include get-spacer(map-get($spacers, padding), map-get($size, md));
+
+  .guidance {
+    @include kaleid-font-color-action($tone: _00);
+    cursor: pointer;
+  }
+
+  .guidance-details {
+    @include kaleid-background-color($color: warn, $level: 4);
+    @include get-spacer(
+      map-get($spacers, padding),
+      map-get($size, sb),
+      map-get($size, sb)
+    );
+  }
 }
 
 .ul {

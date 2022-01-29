@@ -312,7 +312,7 @@ $color-map-v2: (
   );
 }
 
-@mixin kaleid-font-color-action($color: default, $tone: null) {
+@mixin kaleid-font-color-action($color: action, $tone: null) {
   @if (map-get($color-map-v2, $color) == null) {
     @error "kaleid-font-color-action() のcolorが存在しません。";
   } @else if (map-get(map-get($color-map-v2, $color), action) == null) {

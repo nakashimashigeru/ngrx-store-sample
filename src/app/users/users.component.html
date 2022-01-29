@@ -1,5 +1,6 @@
 <section class="user-list">
-  <mat-card>
+  <div *ngIf="existUser$ | async; then thenBlock else elseBlock"></div>
+  <ng-template #thenBlock>
     <ul class="ul">
       <li *ngFor="let user of users$ | async" class="li">
         <div class="user">
@@ -11,9 +12,21 @@
         </div>
       </li>
     </ul>
-  </mat-card>
-  <p>
-    ユーザを追加する場合は、
-    <a routerLink="/users/add">こちら</a>
-  </p>
+    <p>
+      ユーザを追加する場合は、
+      <a routerLink="/users/add">こちら</a>
+    </p>
+  </ng-template>
+  <ng-template #elseBlock>
+    <fa-icon [icon]="faExclamationTriangle"></fa-icon>
+    初めにJSON Serverを起動してください。
+    <span class="guidance" (click)="showGuidance = !showGuidance">詳細はこちら</span>
+    <div *ngIf="showGuidance" class="guidance-details" @expand>
+      ここに詳細を記述します（後日対応）
+      <p>
+        ユーザを追加する場合は、
+        <a routerLink="/users/add">こちら</a>
+      </p>
+    </div>
+  </ng-template>
 </section>

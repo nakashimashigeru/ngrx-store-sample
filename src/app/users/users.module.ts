@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   exports: [
     UsersComponent,
