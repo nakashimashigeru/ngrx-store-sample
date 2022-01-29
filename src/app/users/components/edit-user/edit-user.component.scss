@@ -8,12 +8,31 @@
 
 .edit-form {
   @include get-spacer(map-get($spacers, padding), map-get($size, md));
+  @include kaleid-background-color($color: warn, $level: 5);
 }
 
 .edit-form-div {
   @include flex-row($gap: 2rem);
+
+  .mat-form-field {
+    width: 225px;
+  }
 }
 
 .edit-form-subtitle {
   @include font-color-v2(grey-dark);
+}
+
+.ul {
+  @include get-spacer(
+    map-get($spacers, padding),
+    map-get($size, sl),
+    map-get($size, sl)
+  );
+  list-style-type: none;
+
+  .li {
+    @include kaleid-font();
+    @include kaleid-font-color($color: warn, $level: 1);
+  }
 }

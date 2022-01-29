@@ -12,7 +12,7 @@
     $property !=
     map-get($spacers, padding)
   {
-    @error "$propertyの値が正しくありません。 'map-get($spacer, margin)' もしくは 'map-get($spacer, padding)' を指定してください。";
+    @error "$property の値が正しくありません。 'map-get($spacer, margin)' もしくは 'map-get($spacer, padding)' を指定してください。";
   }
 
   @if $right == 0 and $bottom == 0 and $left == 0 {

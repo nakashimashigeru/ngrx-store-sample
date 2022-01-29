@@ -1,4 +1,4 @@
-@use 'sass:math';
+@use "sass:math";
 
 /**
 * https://material.io/design/typography/the-type-system.html#type-scale
@@ -49,4 +49,29 @@
   font-size: #{$type-size}rem;
   font-weight: $type-weight;
   line-height: $rem;
+}
+
+@mixin kaleid-font($size: normal) {
+  $font-size: (
+    normal: 1rem,
+    dence: 0.875rem,
+    oneline: 0.875rem,
+  );
+
+  $font-weight: (
+    normal: 400,
+    dence: 400,
+    oneline: 400,
+  );
+
+  $type-size: map-get($font-size, $size);
+  $type-weight: map-get($font-weight, $size);
+
+  @if ($type-size == null) {
+    @error "kaleid-font() のパラメーターが正しくありません。";
+  }
+
+  font-size: $type-size;
+  line-height: $type-size;
+  font-weight: $type-weight;
 }

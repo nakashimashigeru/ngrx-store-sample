@@ -207,6 +207,41 @@ $color-map-v2: (
     ),
     default: 4,
   ),
+  action: (
+    base: (
+      #05285d,
+      #07429b,
+      #0d5eda,
+      #5992e7,
+      #a0c0f1,
+      #e6effb,
+    ),
+    action: (
+      _00: (
+        base: (
+          color: #0d5eda,
+          on: $white,
+        ),
+        hover: (
+          color: #d8e5f9,
+          on: #0d5eda,
+        ),
+        active: (
+          color: #6d9fea,
+          on: #0d5eda,
+        ),
+      ),
+    ),
+    on: (
+      $white,
+      $white,
+      $white,
+      $black,
+      $black,
+      $black,
+    ),
+    default: 3,
+  ),
 );
 
 @function p-color-level($color, $level) {
@@ -223,6 +258,26 @@ $color-map-v2: (
     $shift: 1;
   } @else {
     $shift: -1;
+  }
+  @return $shift;
+}
+
+@function kaleid-p-color-shift($color, $level) {
+  $on: nth(map-get(map-get($color-map-v2, $color), on), $level);
+  $on_l1: nth(map-get(map-get($color-map-v2, $color), on), 1);
+  $shift: 0;
+  @if ($on_l1 == $white) {
+    @if ($on == $white) {
+      $shift: 1;
+    } @else {
+      $shift: -1;
+    }
+  } @else {
+    @if ($on == $white) {
+      $shift: -1;
+    } @else {
+      $shift: 1;
+    }
   }
   @return $shift;
 }
@@ -246,12 +301,84 @@ $color-map-v2: (
   }
 }
 
+@mixin kaleid-font-color($color: default, $level: null) {
+  @if (map-get($color-map-v2, $color) == null) {
+    @error "kaleid-font-color() のcolorが存在しません。";
+  }
+
+  color: nth(
+    map-get(map-get($color-map-v2, $color), base),
+    p-color-level($color, $level)
+  );
+}
+
+@mixin kaleid-font-color-action($color: default, $tone: null) {
+  @if (map-get($color-map-v2, $color) == null) {
+    @error "kaleid-font-color-action() のcolorが存在しません。";
+  } @else if (map-get(map-get($color-map-v2, $color), action) == null) {
+    @error "kaleid-font-color-action() のactionが存在しません。";
+  } @else if
+    (map-get(map-get(map-get($color-map-v2, $color), action), $tone) == null)
+  {
+    @error "kaleid-font-color-action() のtoneが存在しません。";
+  }
+
+  $action-map: map-get(map-get(map-get($color-map-v2, $color), action), $tone);
+
+  color: map-get(map-get($action-map, base), color);
+  &:hover {
+    color: map-get(map-get($action-map, hover), color);
+  }
+  &.active {
+    color: map-get(map-get($action-map, active), color);
+  }
+}
+
 @mixin background-color($background, $alpha: 1) {
   color: map-get(map-get($color-map, $background), on);
   background-color: rgba(
     map-get(map-get($color-map, $background), color),
     $alpha
   );
+}
+
+@mixin kaleid-background-color($color: default, $alpha: 1, $level: null) {
+  @if (map-get($color-map-v2, $color) == null) {
+    @error "kaleid-background-color() のcolorが存在しません。";
+  }
+
+  background-color: rgba(
+    nth(
+      map-get(map-get($color-map-v2, $color), base),
+      p-color-level($color, $level)
+    ),
+    $alpha
+  );
+}
+
+@mixin kaleid-background-color-action($color: action, $alpha: 1, $tone: null) {
+  @if (map-get($color-map-v2, $color) == null) {
+    @error "kaleid-background-color-action() のcolorが存在しません。";
+  } @else if (map-get(map-get($color-map-v2, $color), action) == null) {
+    @error "kaleid-background-color-action() のactionが存在しません。";
+  } @else if
+    (map-get(map-get(map-get($color-map-v2, $color), action), $tone) == null)
+  {
+    @error "kaleid-background-color-action() のtoneが存在しません。";
+  }
+
+  $action-map: map-get(map-get(map-get($color-map-v2, $color), action), $tone);
+
+  background-color: rgba(map-get(map-get($action-map, base), color), $alpha);
+  &:hover {
+    background-color: rgba(map-get(map-get($action-map, hover), color), $alpha);
+  }
+  &.active {
+    background-color: rgba(
+      map-get(map-get($action-map, active), color),
+      $alpha
+    );
+  }
 }
 
 @mixin border-color($color, $px: 1px, $style: solid, $suffix: null, $alpha: 1) {
@@ -264,6 +391,47 @@ $color-map-v2: (
     border: $px
       $style
       rgba(map-get(map-get($color-map, $color), color), $alpha);
+  }
+}
+
+@mixin kaleid-border-color(
+  $emphasis: m,
+  $style: solid,
+  $suffix: null,
+  $color: null,
+  $level: null
+) {
+  $border-color: null;
+  @if ($color == null and $level != null) {
+    @error "kaleid-border-color() のcolorがnullの場合はlevelが指定できません。";
+  } @else if ($color != null) {
+    $level: p-color-level($color, $level);
+    $border-color: 1px
+      $style
+      nth(map-get(map-get($color-map-v2, $color), base), $level);
+  } @else if($emphasis == vh) {
+    $border-color: 1px
+      $style
+      nth(map-get(map-get($color-map-v2, grey-dark), base), 3);
+  } @else if($emphasis == h) {
+    $border-color: 1px
+      $style
+      nth(map-get(map-get($color-map-v2, grey-dark), base), 4);
+  } @else if($emphasis == m) {
+    $border-color: 1px
+      $style
+      nth(map-get(map-get($color-map-v2, grey-dark), base), 5);
+  } @else if($emphasis == l) {
+    $border-color: 1px
+      $style
+      nth(map-get(map-get($color-map-v2, grey-dark), base), 6);
+  }
+
+  @if $suffix == top or $suffix == bottom or $suffix == left or $suffix == right
+  {
+    border-#{$suffix}: $border-color;
+  } @else if $suffix == null {
+    border: $border-color;
   }
 }
 
