@@ -12,10 +12,12 @@
         </div>
       </li>
     </ul>
-    <p>
-      ユーザを追加する場合は、
-      <a routerLink="/users/add">こちら</a>
-    </p>
+    <ul class="ul" @verticalFlip>
+      <li class="li">
+        ユーザを追加する場合は、
+        <a routerLink="/users/add">こちら</a>
+      </li>
+    </ul>
   </ng-template>
   <ng-template #elseBlock>
     <fa-icon [icon]="faExclamationTriangle"></fa-icon>

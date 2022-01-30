@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { distinctUntilChanged, map, pairwise, startWith } from 'rxjs/operators';
+import { verticalFlipAnimation } from './../../../utils/animations/bounce.animation';
 import { User } from '../../models/user.model';
 
 import * as UserActions from './../../+state/user.actions';
@@ -10,7 +11,8 @@ import * as UserActions from './../../+state/user.actions';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.scss']
+  styleUrls: ['./add-user.component.scss'],
+  animations: [verticalFlipAnimation]
 })
 export class AddUserComponent implements OnInit, AfterViewInit {
 

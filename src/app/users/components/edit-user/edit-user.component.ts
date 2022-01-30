@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { verticalFlipAnimation } from './../../../utils/animations/bounce.animation';
 import { UserFacade } from '../../+state/user.facade';
 import { User } from '../../models/user.model';
 
@@ -10,7 +11,8 @@ import * as UserActions from './../../+state/user.actions';
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.scss']
+  styleUrls: ['./edit-user.component.scss'],
+  animations: [verticalFlipAnimation]
 })
 export class EditUserComponent implements OnInit {
 

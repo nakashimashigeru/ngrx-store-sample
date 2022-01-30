@@ -32,12 +32,14 @@
   );
   list-style-type: none;
 
-  .li {
-    @include flex-row($justify: space-between, $align: center);
+  &:first-of-type {
+    .li {
+      @include flex-row($justify: space-between, $align: center);
 
-    &:first-of-type {
-      .user {
-        @include font-color-v2(warn);
+      &:first-of-type {
+        .user {
+          @include font-color-v2(warn);
+        }
       }
     }
   }

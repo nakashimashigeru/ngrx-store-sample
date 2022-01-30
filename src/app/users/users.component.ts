@@ -9,12 +9,13 @@ import * as UserActions from './../users/+state/user.actions';
 import { Router } from '@angular/router';
 import { expandAnimation } from '../utils/animations/expand.animation';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { verticalFlipAnimation } from '../utils/animations/bounce.animation';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
-  animations: [expandAnimation]
+  animations: [expandAnimation, verticalFlipAnimation]
 })
 export class UsersComponent implements AfterViewInit, OnDestroy {
 

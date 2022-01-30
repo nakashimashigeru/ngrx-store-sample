@@ -1,6 +1,7 @@
 import { animate, style, transition, trigger } from "@angular/animations";
 
 const open = style({
+  opacity: '1',
   overflow: 'hidden',
   height: '*'
 });
